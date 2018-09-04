@@ -1,0 +1,43 @@
+body {
+    background-image: url("../images/128-129.jpg");
+    background-repeat: repeat;
+}
+/* ------------------------------------------------ */
+    .box {
+        font-family: 'Press Start 2P', cursive;
+        text-align: center;
+        background-color: white;
+        border-style: solid;
+        border-color: silver;
+        border-width: 15px;
+        margin: 100px;
+        opacity: 0.5;
+        padding-top: 50px;
+        padding-bottom: 0px;
+    }
+/* ------------------------------------------------ */
+        .title-box {
+            margin-bottom: 50px;
+        }
+/* ------------------------------------------------ */
+        .time-box {
+    
+        }
+
+            .time {
+
+            }
+/* ------------------------------------------------ */
+        .form {
+            margin-bottom: 50px;
+        }
+
+            .questions {
+                margin: 30px;
+            }
+
+            .choices {
+                font-size: 23px;
+            }
+/* ------------------------------------------------ */
+        
