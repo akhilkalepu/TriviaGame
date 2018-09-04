@@ -18,42 +18,31 @@
 
     <h1 class="title-box">Trivia Game</h1>
 
-    <div class="time-box">
-        <h4>Time Remaining</h4>
-        <h4 class="time-remaining">30</h4>
-    </div>
+    <button class="w3-btn w3-block" id="start-btn">Start</button>
 
-    <form class="form">
-    <fieldset class="form-group">
-        <h3 class="questions">When was the war of 1812?</h3>
-        <div class="choices">
-        <div class="form-check">
-            <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="optionsRadios" id="choice1" value="option1">
-            1776
-            </label>
+    <div id="quiz-box">
+
+        <div class="time-box">
+            <h4>Time Remaining</h4>
+            <h4 class="time-remaining">30</h4>
         </div>
-        <div class="form-check">
-            <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="optionsRadios" id="choice2" value="option2">
-            1812
-            </label>
-        </div>
-        <div class="form-check">
-            <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="optionsRadios" id="choice3" value="option3">
-            1813
-            </label>
-        </div>
-        <div class="form-check">
-            <label class="form-check-label">
-            <input type="radio" class="form-check-input" name="optionsRadios" id="choice4" value="option4">
-            1912
-            </label>
-        </div>
-        </div>
-    </fieldset>
-    </form>
+
+        <form class="form">
+        <fieldset class="form-group">
+            <h3 class="question-box"></h3>
+            <div class="choice-box">
+                <button class="w3-btn" class="choice-buttons" id="choice1"></button>
+                <br>
+                <button class="w3-btn" class="choice-buttons" id="choice2"></button>
+                <br>
+                <button class="w3-btn" class="choice-buttons" id="choice3"></button>
+                <br>
+                <button class="w3-btn" class="choice-buttons" id="choice4"></button>
+            </div>
+        </fieldset>
+        </form>
+
+    </div>
 
 </div>
 
