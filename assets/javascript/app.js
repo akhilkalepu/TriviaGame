@@ -64,6 +64,7 @@ for (i = 0; i < trivia.length; i++) {
     $("#choice3").text(trivia[i].choices[2]);
     $("#choice4").text(trivia[i].choices[3]);
 };
+
 // ------------------------ANSWERS------------------------
 // var choice1 = document.getElementById("choice1");
 // var choice2 = document.getElementById("choice2");
