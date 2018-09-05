@@ -139,7 +139,7 @@ function roundfunction() {
             $("#quiz-box").append("<img id='gif' class='popuptext' src='https://media.giphy.com/media/ZebTmyvw85gnm/giphy.gif'>");
         }
         if ((userChoice != trivia[i].answer) && (seconds === 0)) {
-            $("#quiz-box").prepend("<h3 class='popuptext'>Question is unanswered.</h3>");
+            $("#quiz-box").prepend("<h3 class='popuptext'>Question is unanswered. The correct answer was  " + trivia[i].correctAnswer + "</h3>");
             $("#quiz-box").append("<img id='gif' class='popuptext' src='https://media.giphy.com/media/Ll2fajzk9DgaY/giphy.gif'>");
         }
         i++;
