@@ -3,42 +3,50 @@ $(document).ready(function () {
 var trivia = [{
         question: "When was the War of 1812?",
         choices: ["1776", "1812", "1813", "1912"],
-        answer: 1
+        answer: 1,
+        correctAnswer: "1812."
     },
     {
         question: "How many hydrogen atoms are in a water molecule?",
         choices: ["One", "Two", "Three", "None"],
-        answer: 1
+        answer: 1,
+        correctAnswer: "two."
     },
     {
         question: "Mixing blue and yellow makes what color?",
         choices: ["Red", "Light Blue", "Orange", "Green"],
-        answer: 3
+        answer: 3,
+        correctAnswer: "green."
     },
     {
         question: 'Who wrote "War and Peace"?',
         choices: ["Noam Chomsky", "Mark Twain", "Leo Tolstoy", "Maya Angelou"],
-        answer: 2
+        answer: 2,
+        correctAnswer: "Leo Tolstoy."
     },
     {
         question: "What is the capital of Burkina Faso?",
         choices: ["Ouagadougou", "Monrovia", "Lagos", "Kinshasa"],
-        answer: 0
+        answer: 0,
+        correctAnswer: "Ouagadougou."
     },
     {
         question: "What is the definition of obnubilate?",
         choices: ["To inhale through the nose.", "To weave in and out.", "To liquify by applying heat.", "To darken or obscure something."],
-        answer: 3
+        answer: 3,
+        correctAnswer: "to darken or obscure something."
     },
     {
         question: "How long is a lightyear?",
         choices: ["642 billion hours", "5.9 trillion miles", "3.14 quadrillion miles", "6,537 years"],
-        answer: 1
+        answer: 1,
+        correctAnswer: "5.9 trillion miles."
     },
     {
         question: "Who invented the internet?",
         choices: ["Al Gore", "Jeff Bezos", "Tupac Shakur", "H.P. Lovecraft"],
-        answer: 2
+        answer: 2,
+        correctAnswer: "Tupac Shakur."
     }
 ];
 
@@ -94,41 +102,21 @@ function quizfunction() {
 // ------------------------CHOICE BUTTONS------------------------
 $("#choice1").on("click", function () {
     userChoice = 0;
-    if (userChoice === trivia[i].answer) {
-        right++;
-    } else {
-        wrong++;
-    }
 });
 $("#choice1").on("click", roundfunction);
 
 $("#choice2").on("click", function () {
     userChoice = 1;
-    if (userChoice === trivia[i].answer) {
-        right++;
-    } else {
-        wrong++;
-    }
 });
 $("#choice2").on("click", roundfunction);
 
 $("#choice3").on("click", function () {
     userChoice = 2;
-    if (userChoice === trivia[i].answer) {
-        right++;
-    } else {
-        wrong++;
-    }
 });
 $("#choice3").on("click", roundfunction);
 
 $("#choice4").on("click", function () {
     userChoice = 3;
-    if (userChoice === trivia[i].answer) {
-        right++;
-    } else {
-        wrong++;
-    }
 });
 $("#choice4").on("click", roundfunction);
 
@@ -140,12 +128,24 @@ function roundfunction() {
     function popup () {
         $(".time-box").hide();
         $(".form").hide();
-        $("#quiz-box").prepend("<h3 class='popuptext'>Question is unanswered.</h3>");
-        $("#quiz-box").append("<img id='gif' class='popuptext' src='https://media.giphy.com/media/Ll2fajzk9DgaY/giphy.gif'>");
+        if (userChoice === trivia[i].answer) {
+            right++;
+            $("#quiz-box").prepend("<h3 class='popuptext'>Correct!</h3>");
+            $("#quiz-box").append("<img id='gif' class='popuptext' src='https://media.giphy.com/media/xUKrrEnN9I5lnrcSMv/giphy.gif'>");
+        }
+        if ((userChoice != trivia[i].answer) && (seconds > 0)) {
+            wrong++;
+            $("#quiz-box").prepend("<h3 class='popuptext'>Wrong, the correct answer was " + trivia[i].correctAnswer + "</h3>");
+            $("#quiz-box").append("<img id='gif' class='popuptext' src='https://media.giphy.com/media/ZebTmyvw85gnm/giphy.gif'>");
+        }
+        if ((userChoice != trivia[i].answer) && (seconds === 0)) {
+            $("#quiz-box").prepend("<h3 class='popuptext'>Question is unanswered.</h3>");
+            $("#quiz-box").append("<img id='gif' class='popuptext' src='https://media.giphy.com/media/Ll2fajzk9DgaY/giphy.gif'>");
+        }
         i++;
     }
     function roundtime () {
-        seconds = 5;
+        seconds = 3;
         clearInterval(intervalId);
         intervalId = setInterval(rounddecrement, 1000);
     }

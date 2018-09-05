@@ -12,7 +12,7 @@ body {
         border-width: 15px;
         margin: 30px;
         opacity: 0.5;
-        min-height: 630px;
+        min-height: 650px;
         padding-top: 50px;
         padding-bottom: 0px;
     }
@@ -47,6 +47,7 @@ body {
 
         #gif {
             margin-top: 25px;
+            height: 300px;
         }
 /* ------------------------------------------------ */
         .form {
