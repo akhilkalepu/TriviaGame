@@ -99,8 +99,9 @@ $("#choice1").on("click", function () {
     } else {
         wrong++;
     }
-    roundfunction();
 });
+$("#choice1").on("click", roundfunction);
+
 $("#choice2").on("click", function () {
     userChoice = 1;
     if (userChoice === trivia[i].answer) {
@@ -108,8 +109,9 @@ $("#choice2").on("click", function () {
     } else {
         wrong++;
     }
-    roundfunction();
 });
+$("#choice2").on("click", roundfunction);
+
 $("#choice3").on("click", function () {
     userChoice = 2;
     if (userChoice === trivia[i].answer) {
@@ -117,8 +119,9 @@ $("#choice3").on("click", function () {
     } else {
         wrong++;
     }
-    roundfunction();
 });
+$("#choice3").on("click", roundfunction);
+
 $("#choice4").on("click", function () {
     userChoice = 3;
     if (userChoice === trivia[i].answer) {
@@ -126,8 +129,8 @@ $("#choice4").on("click", function () {
     } else {
         wrong++;
     }
-    roundfunction();
 });
+$("#choice4").on("click", roundfunction);
 
 // ------------------------ROUND FUNCTION------------------------
 function roundfunction() {
@@ -167,19 +170,48 @@ function scoresheet () {
     $("#wrongscore").text(wrong);
     $("#unscore").text(unanswered);
     $("#reset-box").show();
-    userChoice = "";
-    i = 0;
 }
 
 $("#reset-btn").on("click", function () {
-    right = 0;
-    wrong = 0;
-    unanswered = 0;
     $("#reset-box").hide();
     $("#score-sheet").hide();
     $("#quiz-box").show();
+    $(".time-box").show();
+    $(".form").show();
 });
-$("#reset-btn").on("click", quizfunction);
+$("#reset-btn").on("click", resetquizfunction);
+
+function resetquizfunction() {
+    right = 0;
+    wrong = 0;
+    unanswered = 0;
+    userChoice = "";
+    i = 0;
+    resetask();
+    resettime();
+}
+    function resetask () {
+        $(".question-box").text(trivia[i].question);
+        $("#choice1").text(trivia[i].choices[0]);
+        $("#choice2").text(trivia[i].choices[1]);
+        $("#choice3").text(trivia[i].choices[2]);
+        $("#choice4").text(trivia[i].choices[3]);
+    }
+    function resettime () {
+        seconds = 10;
+        clearInterval(intervalId);
+        intervalId = setInterval(resetdecrement, 1000);
+        $(".time-remaining").text(seconds);
+    }
+    function resetdecrement() {
+        seconds--;
+        $(".time-remaining").text(seconds);
+        if (seconds === 0) {
+            unanswered++;
+            roundfunction();
+        }
+    }
+
 
 // ------------------------------------------------
 });
