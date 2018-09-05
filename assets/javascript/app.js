@@ -17,7 +17,7 @@ var trivia = [{
     },
     {
         question: 'Who wrote "War and Peace"?',
-        choices: ["Noam Chomsky", "Mark Twain", "Leo Tolstoy", "J.K. Rowling"],
+        choices: ["Noam Chomsky", "Mark Twain", "Leo Tolstoy", "Maya Angelou"],
         answer: 2
     },
     {
@@ -45,7 +45,7 @@ var trivia = [{
 // ------------------------VARIABLES------------------------
 var userChoice = "";
 
-var seconds = 30;
+var seconds = 10;
 var intervalId;
 
 var right = 0;
@@ -53,12 +53,14 @@ var wrong = 0;
 var unanswered = 0;
 
 // ------------------------GAME FUNCTIONS------------------------
+$("#score-sheet").hide();
+$("#reset-box").hide();
 $("#quiz-box").hide();
 
 i = 0;
 
 $("#start-btn").on("click", function () {
-    $("#start-box").html("");
+    $("#start-box").hide();
     $("#quiz-box").slideToggle();
 });
 $("#start-btn").on("click", quizfunction);
@@ -75,7 +77,7 @@ function quizfunction() {
         $("#choice4").text(trivia[i].choices[3]);
     }
     function time () {
-        seconds = 30;
+        seconds = 10;
         clearInterval(intervalId);
         intervalId = setInterval(decrement, 1000);
         $(".time-remaining").text(seconds);
@@ -85,8 +87,6 @@ function quizfunction() {
         $(".time-remaining").text(seconds);
         if (seconds === 0) {
             unanswered++;
-            userChoice = "";
-            i++;
             roundfunction();
         }
     }
@@ -96,68 +96,40 @@ $("#choice1").on("click", function () {
     userChoice = 0;
     if (userChoice === trivia[i].answer) {
         right++;
-        alert("Correct!");
-        userChoice = "";
-        i++;
-        quizfunction();
     } else {
         wrong++;
-        alert("Wrong!");
-        userChoice = "";
-        i++;
-        quizfunction();
     }
+    roundfunction();
 });
 $("#choice2").on("click", function () {
     userChoice = 1;
     if (userChoice === trivia[i].answer) {
         right++;
-        alert("Correct!");
-        userChoice = "";
-        i++;
-        quizfunction();
     } else {
         wrong++;
-        alert("Wrong!");
-        userChoice = "";
-        i++;
-        quizfunction();
     }
+    roundfunction();
 });
 $("#choice3").on("click", function () {
     userChoice = 2;
     if (userChoice === trivia[i].answer) {
         right++;
-        alert("Correct!");
-        userChoice = "";
-        i++;
-        quizfunction();
     } else {
         wrong++;
-        alert("Wrong!");
-        userChoice = "";
-        i++;
-        quizfunction();
     }
+    roundfunction();
 });
 $("#choice4").on("click", function () {
     userChoice = 3;
     if (userChoice === trivia[i].answer) {
         right++;
-        alert("Correct!");
-        userChoice = "";
-        i++;
-        quizfunction();
     } else {
         wrong++;
-        alert("Wrong!");
-        userChoice = "";
-        i++;
-        quizfunction();
     }
+    roundfunction();
 });
 
-// ------------------------POPUP FUNCTION------------------------
+// ------------------------ROUND FUNCTION------------------------
 function roundfunction() {
     popup();
     roundtime();
@@ -166,21 +138,48 @@ function roundfunction() {
         $(".time-box").hide();
         $(".form").hide();
         $("#quiz-box").prepend("<h3 id='popuptext'>Question is unanswered.</h3>");
+        i++;
     }
     function roundtime () {
-        seconds = 4;
+        seconds = 3;
         clearInterval(intervalId);
         intervalId = setInterval(rounddecrement, 1000);
     }
     function rounddecrement() {
         seconds--;
-        if (seconds === 0) {
+        if ((seconds === 0) && (i < trivia.length)) {
             $("#popuptext").hide();
-            $(".time-box").slideToggle();
-            $(".form").slideToggle();
+            $(".time-box").show();
+            $(".form").show();
+            userChoice = "";
             quizfunction();
         }
+        if ((seconds === 0) && (i === trivia.length)) {
+            scoresheet();
+        }
     }
+
+// ------------------------SCORE SHEET------------------------
+function scoresheet () {
+    $("#popuptext").hide();
+    $("#score-sheet").show();
+    $("#rightscore").text(right);
+    $("#wrongscore").text(wrong);
+    $("#unscore").text(unanswered);
+    $("#reset-box").show();
+    userChoice = "";
+    i = 0;
+}
+
+$("#reset-btn").on("click", function () {
+    right = 0;
+    wrong = 0;
+    unanswered = 0;
+    $("#reset-box").hide();
+    $("#score-sheet").hide();
+    $("#quiz-box").show();
+});
+$("#reset-btn").on("click", quizfunction);
 
 // ------------------------------------------------
 });

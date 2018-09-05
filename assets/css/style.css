@@ -12,7 +12,7 @@ body {
         border-width: 15px;
         margin: 30px;
         opacity: 0.5;
-        min-height: 594.2px;
+        min-height: 630px;
         padding-top: 50px;
         padding-bottom: 0px;
     }
@@ -22,6 +22,12 @@ body {
         }
 /* ------------------------------------------------ */
         #start-btn {
+            height: 50px;
+            width: 500px;
+            margin-top: 125px;
+        }
+
+        #reset-btn {
             height: 50px;
             width: 500px;
             margin-top: 125px;
