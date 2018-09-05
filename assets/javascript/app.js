@@ -25,7 +25,7 @@ var trivia = [{
         answer: 3
     },
     {
-        question: "Who wrote str.italics(War and Peace)?",
+        question: 'Who wrote "War and Peace"?',
         choices: ["Noam Chomsky", "Mark Twain", "Leo Tolstoy", "J.K. Rowling"],
         answer: 2
     },
@@ -74,7 +74,7 @@ function quizfunction() {
         $("#choice4").text(trivia[i].choices[3]);
     }
     function time () {
-        var seconds = 30;
+        seconds = 30;
         clearInterval(intervalId);
         intervalId = setInterval(decrement, 1000);
         $(".time-remaining").text(seconds);
@@ -83,87 +83,79 @@ function quizfunction() {
         seconds--;
         $(".time-remaining").text(seconds);
         if (seconds === 0) {
-            stop();
-            alert("Time Up!");
+            unanswered++;
+            alert("Unanswered");
+            userChoice = "";
+            i++;
+            quizfunction();
         }
-    }
-    function stop () {
-        clearInterval(intervalId);
-        var userChoice = "";
     }
 
 // ------------------------CHOICE BUTTONS------------------------
 $("#choice1").on("click", function () {
-    var userChoice = 0;
+    userChoice = 0;
     if (userChoice === trivia[i].answer) {
-        alert(userChoice);
-        alert(trivia[i].answer);
+        right++;
         alert("Correct!");
+        userChoice = "";
+        i++;
+        quizfunction();
     } else {
-        alert(userChoice);
-        alert(trivia[i].answer);
+        wrong++;
         alert("Wrong!");
+        userChoice = "";
+        i++;
+        quizfunction();
     }
-    i++;
-    quizfunction();
 });
 $("#choice2").on("click", function () {
-    var userChoice = 1;
+    userChoice = 1;
     if (userChoice === trivia[i].answer) {
-        alert(userChoice);
-        alert(trivia[i].answer);
+        right++;
         alert("Correct!");
+        userChoice = "";
+        i++;
+        quizfunction();
     } else {
-        alert(userChoice);
-        alert(trivia[i].answer);
+        wrong++;
         alert("Wrong!");
+        userChoice = "";
+        i++;
+        quizfunction();
     }
-    i++;
-    quizfunction();
 });
 $("#choice3").on("click", function () {
-    var userChoice = 2;
+    userChoice = 2;
     if (userChoice === trivia[i].answer) {
-        alert(userChoice);
-        alert(trivia[i].answer);
+        right++;
         alert("Correct!");
+        userChoice = "";
+        i++;
+        quizfunction();
     } else {
-        alert(userChoice);
-        alert(trivia[i].answer);
+        wrong++;
         alert("Wrong!");
+        userChoice = "";
+        i++;
+        quizfunction();
     }
-    i++;
-    quizfunction();
 });
 $("#choice4").on("click", function () {
-    var userChoice = 3;
+    userChoice = 3;
     if (userChoice === trivia[i].answer) {
-        alert(userChoice);
-        alert(trivia[i].answer);
+        right++;
         alert("Correct!");
+        userChoice = "";
+        i++;
+        quizfunction();
     } else {
-        alert(userChoice);
-        alert(trivia[i].answer);
+        wrong++;
         alert("Wrong!");
+        userChoice = "";
+        i++;
+        quizfunction();
     }
-    i++;
-    quizfunction();
 });
-
-// ------------------------RIGHT/WRONG BUTTONS------------------------
-// function rightwrong () {
-//     if (userChoice === trivia[i].answer) {
-//         alert(userChoice);
-//         alert(trivia[i].answer);
-//         alert("Correct!");
-//     }   else {
-//         alert(userChoice);
-//         alert(trivia[i].answer);
-//         alert("Wrong!");
-//     }
-//     i++;
-//     quizfunction();
-// }
 
 // ------------------------POPUP FUNCTION------------------------
 // var roundseconds = 4;
