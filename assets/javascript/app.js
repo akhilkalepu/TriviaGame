@@ -1,14 +1,5 @@
 $(document).ready(function () {
-// ------------------------VARIABLES------------------------
-var userChoice = "";
-
-var seconds = 30;
-var intervalId;
-
-var right = 0;
-var wrong = 0;
-var unanswered = 0;
-
+// ------------------------Q/A ARRAY------------------------
 var trivia = [{
         question: "When was the War of 1812?",
         choices: ["1776", "1812", "1813", "1912"],
@@ -51,6 +42,16 @@ var trivia = [{
     }
 ];
 
+// ------------------------VARIABLES------------------------
+var userChoice = "";
+
+var seconds = 30;
+var intervalId;
+
+var right = 0;
+var wrong = 0;
+var unanswered = 0;
+
 // ------------------------GAME FUNCTIONS------------------------
 $("#quiz-box").hide();
 
@@ -84,10 +85,9 @@ function quizfunction() {
         $(".time-remaining").text(seconds);
         if (seconds === 0) {
             unanswered++;
-            alert("Unanswered");
             userChoice = "";
             i++;
-            quizfunction();
+            roundfunction();
         }
     }
 
@@ -158,31 +158,29 @@ $("#choice4").on("click", function () {
 });
 
 // ------------------------POPUP FUNCTION------------------------
-// var roundseconds = 4;
-// var roundId;
-
-// function roundfunction() {
-//     popup();
-//     roundtime();
-// }
-//     function popup() {
-//         $("#form").hide();
-//         $("#quiz-box").html("<div>You are jkhjiuweaakbrjhdhkjh!</div>");
-//     }
-//     function roundtime() {
-//         clearInterval(roundId);
-//         roundId = setInterval(decrement, 1000);
-//     }
-//     function decrement() {
-//         roundseconds--;
-//         if (roundseconds === 0) {
-//             stop();
-//             alert("ASDFASDF");
-//         }
-//     }
-//     function stop() {
-//         clearInterval(roundId);
-//     }
+function roundfunction() {
+    popup();
+    roundtime();
+}
+    function popup () {
+        $(".time-box").hide();
+        $(".form").hide();
+        $("#quiz-box").prepend("<h3 id='popuptext'>Question is unanswered.</h3>");
+    }
+    function roundtime () {
+        seconds = 4;
+        clearInterval(intervalId);
+        intervalId = setInterval(rounddecrement, 1000);
+    }
+    function rounddecrement() {
+        seconds--;
+        if (seconds === 0) {
+            $("#popuptext").hide();
+            $(".time-box").slideToggle();
+            $(".form").slideToggle();
+            quizfunction();
+        }
+    }
 
 // ------------------------------------------------
 });

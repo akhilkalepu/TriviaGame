@@ -34,6 +34,10 @@ body {
             .time {
 
             }
+
+        #popuptext {
+            margin-top: 125px;
+        }
 /* ------------------------------------------------ */
         .form {
             margin-bottom: 50px;
