@@ -45,7 +45,7 @@ var trivia = [{
 // ------------------------VARIABLES------------------------
 var userChoice = "";
 
-var seconds = 10;
+var seconds = 30;
 var intervalId;
 
 var right = 0;
@@ -77,7 +77,7 @@ function quizfunction() {
         $("#choice4").text(trivia[i].choices[3]);
     }
     function time () {
-        seconds = 10;
+        seconds = 30;
         clearInterval(intervalId);
         intervalId = setInterval(decrement, 1000);
         $(".time-remaining").text(seconds);
@@ -140,18 +140,19 @@ function roundfunction() {
     function popup () {
         $(".time-box").hide();
         $(".form").hide();
-        $("#quiz-box").prepend("<h3 id='popuptext'>Question is unanswered.</h3>");
+        $("#quiz-box").prepend("<h3 class='popuptext'>Question is unanswered.</h3>");
+        $("#quiz-box").append("<img id='gif' class='popuptext' src='https://media.giphy.com/media/Ll2fajzk9DgaY/giphy.gif'>");
         i++;
     }
     function roundtime () {
-        seconds = 3;
+        seconds = 5;
         clearInterval(intervalId);
         intervalId = setInterval(rounddecrement, 1000);
     }
     function rounddecrement() {
         seconds--;
         if ((seconds === 0) && (i < trivia.length)) {
-            $("#popuptext").hide();
+            $(".popuptext").hide();
             $(".time-box").show();
             $(".form").show();
             userChoice = "";
@@ -164,7 +165,7 @@ function roundfunction() {
 
 // ------------------------SCORE SHEET------------------------
 function scoresheet () {
-    $("#popuptext").hide();
+    $(".popuptext").hide();
     $("#score-sheet").show();
     $("#rightscore").text(right);
     $("#wrongscore").text(wrong);
@@ -198,7 +199,7 @@ function resetquizfunction() {
         $("#choice4").text(trivia[i].choices[3]);
     }
     function resettime () {
-        seconds = 10;
+        seconds = 30;
         clearInterval(intervalId);
         intervalId = setInterval(resetdecrement, 1000);
         $(".time-remaining").text(seconds);

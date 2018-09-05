@@ -44,6 +44,10 @@ body {
         #popuptext {
             margin-top: 125px;
         }
+
+        #gif {
+            margin-top: 25px;
+        }
 /* ------------------------------------------------ */
         .form {
             margin-bottom: 50px;
